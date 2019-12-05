@@ -1,19 +1,19 @@
 {
-	"name": "SearchNonTLD",
+	"name": "MOGA: Make Omnibox Great Again",
 	"version": "0.0.1",
-	"description": "Make non-valid TLD searching",
-	"homepage_url": "https://github.com/phu54321/SearchNonTLD",
+	"description": "Make firefox omnibox little smarter :)",
+	"homepage_url": "https://github.com/phu54321/MOGA",
 	"manifest_version": 2,
 	"applications": {
 		"gecko": {
-			"id": "your-extension-name@your-domain.com",
+			"id": "phu54321@naver.com",
 			"strict_min_version": "67.0"
 		}
 	},
 	"icons": {
-		"128": "icon.png"
+		"256": "icon.png"
 	},
-  "permissions": ["webNavigation", "storage", "search", "tabs"],
+  "permissions": ["webNavigation", "search"],
 	"background": {
 		"scripts": [
 			"browser-polyfill.min.js",
