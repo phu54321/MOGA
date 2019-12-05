@@ -25,5 +25,10 @@ browser.webNavigation.onCommitted.addListener((evt) => {
 })
 
 async function searchWith (query) {
-  browser.search.search({ query })
+  const currentTabs = await browser.tabs.query({ active: true, currentWindow: true })
+  if (currentTabs.length !== 1) {
+    throw new Error('Invalid currentTabs: ' + currentTabs)
+  }
+  const currentTab = currentTabs[0]
+  browser.search.search({ query, tabId: currentTab.id })
 }
