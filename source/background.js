@@ -1,2 +1,29 @@
-// eslint-disable-next-line import/no-unassigned-import
-import './options-storage'
+import tldList from './tldList'
+
+const maybeNonTLDQuery = /^https?:\/\/([^/]+)\/$/
+browser.webNavigation.onCommitted.addListener((evt) => {
+  if (evt.frameId !== 0) {
+    return
+  }
+
+  // Ignore non-omnibox-typed events
+  if (evt.transitionType !== 'typed') return
+
+  console.log('onCommitted', evt)
+
+  // Non-standard tld
+  if (maybeNonTLDQuery.test(evt.url)) {
+    const url = evt.url.match(maybeNonTLDQuery)[1]
+    const segments = url.split('.')
+    const tld = segments[segments.length - 1].toUpperCase()
+
+    if (tldList.indexOf(tld) === -1) {
+      if (url.startsWith('www.')) return searchWith(url.substr(4))
+      else return searchWith(url)
+    }
+  }
+})
+
+async function searchWith (query) {
+  browser.search.search({ query })
+}

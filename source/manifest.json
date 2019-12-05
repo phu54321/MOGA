@@ -1,10 +1,9 @@
 {
-	"name": "Awesome Extension",
-	"version": "0.0.0",
-	"description": "An awesome new browser extension",
-	"homepage_url": "https://github.com/awesome-templates/browser-extension-template",
+	"name": "SearchNonTLD",
+	"version": "0.0.1",
+	"description": "Make non-valid TLD searching",
+	"homepage_url": "https://github.com/phu54321/SearchNonTLD",
 	"manifest_version": 2,
-	"minimum_chrome_version": "74",
 	"applications": {
 		"gecko": {
 			"id": "your-extension-name@your-domain.com",
@@ -14,15 +13,8 @@
 	"icons": {
 		"128": "icon.png"
 	},
-	"permissions": [
-		"storage"
-	],
-	"options_ui": {
-		"chrome_style": true,
-		"page": "options.html"
-	},
+  "permissions": ["webNavigation", "storage", "search", "tabs"],
 	"background": {
-		"persistent": false,
 		"scripts": [
 			"browser-polyfill.min.js",
 			"background.js"
