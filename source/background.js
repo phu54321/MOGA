@@ -1,15 +1,17 @@
 import tldList from './tldList'
 
-const maybeNonTLDQuery = /^https?:\/\/([^/]+)\/$/
+const maybeNonTLDQuery = /^http:\/\/([^/]+)\/$/
+const rSubredditQuery = /^http:\/\/www.r.com\/([^/]+)$/
+
 browser.webNavigation.onBeforeNavigate.addListener((evt) => {
   // Ignore non-top-level navigation. e.g) iframe
   if (evt.frameId !== 0) return
 
   const tabId = evt.tabId
+  const navUrl = evt.url
 
-  // Non-standard tld test
-  if (maybeNonTLDQuery.test(evt.url)) {
-    const url = evt.url.match(maybeNonTLDQuery)[1]
+  if (maybeNonTLDQuery.test(navUrl)) { // Not-so-common tld (ex: node.js)
+    const url = navUrl.match(maybeNonTLDQuery)[1]
     const segments = url.split('.')
     const tld = segments[segments.length - 1].toUpperCase()
 
@@ -17,6 +19,9 @@ browser.webNavigation.onBeforeNavigate.addListener((evt) => {
       if (url.startsWith('www.')) return searchWith(url.substr(4), tabId)
       else return searchWith(url, tabId)
     }
+  } else if (rSubredditQuery.test(navUrl)) { // Subreddit
+    const subreddit = navUrl.match(rSubredditQuery)[1]
+    searchWith(`r/${subreddit}`, tabId)
   }
 })
 
