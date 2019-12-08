@@ -1,6 +1,6 @@
 import tldList from './tldList'
 
-const maybeNonTLDQuery = /^http:\/\/([^/]+)\/$/
+const maybeNonTLDQuery = /^http:\/\/([^/:]+)\/$/
 const rSubredditQuery = /^http:\/\/www.r.com\/([^/]+)$/
 const localhostQuery = /^http:\/\/localhost(:\d+)?(\/.*)?$/
 const ipQuery = /^https?:\/\/\d+.\d+.\d+.\d+(:\d+)?(\/.*)?$/
