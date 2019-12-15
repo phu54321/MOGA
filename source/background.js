@@ -21,7 +21,7 @@ browser.webNavigation.onBeforeNavigate.addListener((evt) => {
     const segments = url.split('.')
 
     const tld = segments[segments.length - 1].toUpperCase()
-    if (tldList.indexOf(tld) === -1) {
+    if (!tldList.has(tld)) {
       if (url.startsWith('www.')) return searchWith(url.substr(4), tabId)
       else return searchWith(url, tabId)
     }

@@ -1,5 +1,5 @@
 // From https://data.iana.org/TLD/tlds-alpha-by-domain.txt
-export default [
+export default new Set([
   'AAA',
   'AARP',
   'ABARTH',
@@ -1516,4 +1516,4 @@ export default [
   'ZONE',
   'ZUERICH',
   'ZW'
-]
+])
