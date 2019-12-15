@@ -1,5 +1,8 @@
 import tldList from './tldList'
 
+// Support .local tld
+tldList.add('LOCAL')
+
 const maybeNonTLDQuery = /^http:\/\/([^/:]+)\/$/
 const rSubredditQuery = /^http:\/\/www.r.com\/([^/]+)$/
 const localhostQuery = /^http:\/\/localhost(:\d+)?(\/.*)?$/
