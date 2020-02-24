@@ -1,4 +1,5 @@
 import tldList from './tldList'
+import punycode from 'punycode'
 
 // Support .local tld
 tldList.add('LOCAL')
@@ -35,5 +36,6 @@ browser.webNavigation.onBeforeNavigate.addListener((evt) => {
 })
 
 function searchWith (query, tabId) {
+  query = punycode.toUnicode(query)
   browser.search.search({ query, tabId })
 }
